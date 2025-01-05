@@ -5,9 +5,9 @@ namespace Hero
     public class BasicSpell : SpellStrategy
     {
         public GameObject projectilePrefab;
-        public float projectileLifeTime = 5f;
-        public float projectileSpeed = 2f;
-        public float projectileDamage = 10f;
+        public float projectileLifeTime;
+        public float projectileSpeed;
+        public float projectileDamage;
         public override void Fire(Transform firePoint, Vector3 target)
         {
             target.y = firePoint.position.y;

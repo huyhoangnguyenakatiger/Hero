@@ -19,7 +19,7 @@ namespace Hero
         {
             if (starterAssetsInputs.fire)
             {
-                Vector3 target = InputHelper.GetMouseWorldPositionWithRaycast();
+                Vector3 target = InputHelper.GetMouseWorldPositionOnPlane();
                 transform.LookAt(target);
                 Debug.Log(target);
                 spellStrategy.Fire(firePoint, target);

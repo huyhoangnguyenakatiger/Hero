@@ -1167,7 +1167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 161d410003594f746a1b4965340e18dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spellStrategy: {fileID: 11400000, guid: a0eda5ceb4a13c74c8116228d063d18b, type: 2}
+  spellStrategy: {fileID: 11400000, guid: 936d116036c8ed540a332482eb43a912, type: 2}
   firePoint: {fileID: 347291378}
 --- !u!1001 &8345070700268369567
 PrefabInstance:

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Hero
 {
-    public class EnemyFactory : MonoBehaviour
+    public class EnemyFactory
     {
         public Enemy CreateEnemy(EnemyData enemyData, Transform spawnPosition)
         {

@@ -4,14 +4,14 @@ namespace Utilities
 {
     public static class InputHelper
     {
-        public static Vector3 GetMouseWorldPositionWithRaycast()
+        public static Vector3 GetMouseWorldPositionOnPlane()
         {
-            // Tạo mặt phẳng Y = 0
+            Plane plane = new Plane(Vector3.up, Vector3.zero);
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out RaycastHit hitInfo))
+            if (plane.Raycast(ray, out float distance))
             {
-                return hitInfo.point;
+                Vector3 worldPosition = ray.GetPoint(distance);
+                return worldPosition;
             }
 
             return Vector3.zero;
