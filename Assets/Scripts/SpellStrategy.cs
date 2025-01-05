@@ -3,6 +3,6 @@ namespace Hero
 {
     public abstract class SpellStrategy : ScriptableObject
     {
-        public abstract void Fire(Transform firePoint);
+        public abstract void Fire(Transform firePoint, Vector3 target);
     }
 }

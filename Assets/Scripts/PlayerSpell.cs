@@ -1,5 +1,7 @@
 using StarterAssets;
 using UnityEngine;
+using UnityEngine.Rendering;
+using Utilities;
 
 namespace Hero
 {
@@ -17,7 +19,9 @@ namespace Hero
         {
             if (starterAssetsInputs.fire)
             {
-                spellStrategy.Fire(firePoint);
+                Vector3 target = InputHelper.GetMouseWorldPositionWithRaycast();
+                Debug.Log(target);
+                spellStrategy.Fire(firePoint, target);
                 starterAssetsInputs.fire = false;
             }
         }
