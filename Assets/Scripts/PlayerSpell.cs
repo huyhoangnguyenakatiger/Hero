@@ -20,6 +20,7 @@ namespace Hero
             if (starterAssetsInputs.fire)
             {
                 Vector3 target = InputHelper.GetMouseWorldPositionWithRaycast();
+                transform.LookAt(target);
                 Debug.Log(target);
                 spellStrategy.Fire(firePoint, target);
                 starterAssetsInputs.fire = false;
