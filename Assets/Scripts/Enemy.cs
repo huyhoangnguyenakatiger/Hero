@@ -2,14 +2,28 @@ using UnityEngine;
 
 namespace Hero
 {
-    public class Enemy : MonoBehaviour
+    public class Enemy : Character
     {
-
-        public string enemyName;
-        public float health;
         public float speed;
         public float damage;
-
+        [SerializeField] GameObject explosionPrefab;
+        void Awake()
+        {
+            health = maxHealth;
+        }
+        public override void TakeDamage(float amount)
+        {
+            health -= amount;
+            if (health <= 0)
+            {
+                Die();
+            }
+        }
+        public override void Die()
+        {
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
 
     }
 }

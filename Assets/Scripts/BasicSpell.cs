@@ -5,6 +5,7 @@ namespace Hero
     public class BasicSpell : SpellStrategy
     {
         public GameObject projectilePrefab;
+        public GameObject projectileHit;
         public float projectileLifeTime;
         public float projectileSpeed;
         public float projectileDamage;
@@ -16,6 +17,7 @@ namespace Hero
             Projectile projectileComponent = projectile.GetComponent<Projectile>();
             projectileComponent.SetProjectileSpeed(projectileSpeed);
             projectileComponent.SetProjectileDamage(projectileDamage);
+            projectileComponent.SetProjectileHit(projectileHit);
             Destroy(projectile, projectileLifeTime);
         }
     }

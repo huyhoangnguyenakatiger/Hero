@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -26,6 +27,8 @@ namespace Hero
         public bool playerInSightRange;
         public bool playerInAttackRange;
 
+        public event Action<Transform> Fire;
+
         void Awake()
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -36,7 +39,6 @@ namespace Hero
         {
             playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
             playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-            Debug.Log(walkPointSet);
             if (!playerInSightRange && !playerInAttackRange) Patrolling();
             if (playerInSightRange && !playerInAttackRange) ChasePlayer();
             if (playerInSightRange && playerInAttackRange) AttackPlayer();
@@ -58,12 +60,11 @@ namespace Hero
 
         void SearchWalkPoint()
         {
-            float randomZ = Random.Range(-walkPointRange, walkPointRange);
-            float randomX = Random.Range(-walkPointRange, walkPointRange);
+            float randomZ = UnityEngine.Random.Range(-walkPointRange, walkPointRange);
+            float randomX = UnityEngine.Random.Range(-walkPointRange, walkPointRange);
             walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
             if (Physics.Raycast(walkPoint, -transform.up, out RaycastHit hitInfo, 2f, whatIsGround))
             {
-                Debug.Log(hitInfo.point);
                 walkPointSet = true;
             }
             // Plane plane = new Plane(Vector3.up, Vector3.zero);
@@ -87,6 +88,8 @@ namespace Hero
 
             if (!alreadyAttacked)
             {
+
+                Fire?.Invoke(player);
 
                 alreadyAttacked = true;
                 Invoke(nameof(ResetAttack), timeBetweenAttacks);

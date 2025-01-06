@@ -49,7 +49,6 @@ namespace Hero
         public Enemy Build()
         {
             Enemy enemyComponent = Instantiate(enemyPrefab, spawnPosition.position, spawnPosition.rotation).AddComponent<Enemy>();
-            enemyComponent.enemyName = enemyName;
             enemyComponent.health = health;
             enemyComponent.speed = speed;
             enemyComponent.damage = damage;
