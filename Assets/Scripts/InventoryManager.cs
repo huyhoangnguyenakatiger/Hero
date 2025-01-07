@@ -1,47 +1,63 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
-public class InventoryManager : MonoBehaviour
+namespace Hero
 {
-    public static InventoryManager Instance;
-
-    private void Awake()
+    public class InventoryManager : MonoBehaviour
     {
-        if (Instance != null && Instance != this)
+        public static InventoryManager Instance;
+
+        [Header("Inventory Data")]
+        public List<Item> items = new List<Item>();
+
+        private void Awake()
         {
-            Destroy(gameObject);
-            return;
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
 
-    public List<Item> items = new List<Item>();
-
-    public void AddItem(Item newItem)
-    {
-        items.Add(newItem);
-        Debug.Log($"Đã thêm item: {newItem.itemName}");
-    }
-    public void RemoveItem(Item itemToRemove)
-    {
-        if (items.Contains(itemToRemove))
+        public void AddItem(Item newItem)
         {
-            items.Remove(itemToRemove);
-            Debug.Log($"Đã xóa item: {itemToRemove.itemName}");
+            if (newItem.isStackable)
+            {
+                Item existingItem = items.Find(i => i.itemName == newItem.itemName);
+                if (existingItem != null)
+                {
+                    existingItem.quantity++;
+                    Debug.Log($"Đã tăng số lượng: {existingItem.itemName} ({existingItem.quantity})");
+                    return;
+                }
+            }
+            items.Add(newItem);
+            Debug.Log($"Đã thêm item mới: {newItem.itemName} (x{newItem.quantity})");
         }
-        else
-        {
-            Debug.LogWarning($"Item {itemToRemove.itemName} không tồn tại trong Inventory.");
-        }
-    }
 
-    public void DisplayInventory()
-    {
-        Debug.Log("Inventory hiện tại:");
-        foreach (var item in items)
+        public void UseItem(Item item, Hero.Player player)
         {
-            Debug.Log(item.itemName);
+            if (item != null)
+            {
+                item.Use(player);
+                if (item.isStackable)
+                {
+                    item.quantity--;
+                    if (item.quantity <= 0)
+                    {
+                        items.Remove(item);
+                        Debug.Log($"{item.itemName} đã hết và bị xóa khỏi Inventory.");
+                    }
+                }
+                else
+                {
+                    items.Remove(item);
+                    Debug.Log($"{item.itemName} đã bị xóa khỏi Inventory sau khi sử dụng.");
+                }
+            }
         }
     }
 }

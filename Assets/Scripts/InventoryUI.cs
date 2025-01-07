@@ -2,50 +2,78 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryUI : MonoBehaviour
+namespace Hero
 {
-    public GameObject inventoryPanel;
-    public Transform content;
-    public GameObject itemSlotPrefab;
-
-    private void Start()
+    public class InventoryUI : MonoBehaviour
     {
-        inventoryPanel.SetActive(false);
-    }
+        public GameObject inventoryPanel;
+        public Transform content;
+        public GameObject itemSlotPrefab;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.I))
+        private void Start()
         {
-            inventoryPanel.SetActive(!inventoryPanel.activeSelf);
-            if (inventoryPanel.activeSelf)
+            inventoryPanel.SetActive(false);
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.I))
             {
+                inventoryPanel.SetActive(!inventoryPanel.activeSelf);
+
+                TogglePlayerActions(inventoryPanel.activeSelf);
+
+                if (inventoryPanel.activeSelf)
+                {
+                    UpdateInventoryUI();
+                }
+            }
+        }
+
+        private void TogglePlayerActions(bool isInventoryOpen)
+        {
+            PlayerSpell playerSpell = FindFirstObjectByType<PlayerSpell>();
+            if (playerSpell != null)
+            {
+                playerSpell.enabled = !isInventoryOpen;
+            }
+        }
+
+        public void UpdateInventoryUI()
+        {
+            foreach (Transform child in content)
+            {
+                Destroy(child.gameObject);
+            }
+
+            foreach (var item in InventoryManager.Instance.items)
+            {
+                GameObject slot = Instantiate(itemSlotPrefab, content);
+                TMP_Text itemName = slot.GetComponentInChildren<TMP_Text>();
+                Image itemIcon = slot.transform.Find("ItemIcon").GetComponent<Image>();
+                Button itemUseButton = slot.GetComponent<Button>();
+                if (itemName != null && itemIcon != null)
+                {
+                    itemName.text = item.itemName.ToString();
+                    itemIcon.sprite = item.itemIcon;
+                    itemUseButton.onClick.AddListener(() => OnUseItemButton(item));
+                }
+            }
+        }
+
+        public void OnUseItemButton(Item item)
+        {
+            Player player = FindFirstObjectByType<Player>();
+            if (player != null)
+            {
+                InventoryManager.Instance.UseItem(item, player);
                 UpdateInventoryUI();
             }
-        }
-    }
-
-    public void UpdateInventoryUI()
-    {
-        foreach (Transform child in content)
-        {
-            Destroy(child.gameObject);
-        }
-
-        foreach (var item in InventoryManager.Instance.items)
-        {
-            GameObject slot = Instantiate(itemSlotPrefab, content);
-            Image itemIcon = slot.transform.Find("ItemIcon").GetComponent<Image>();
-            if (itemIcon != null)
+            else
             {
-                itemIcon.sprite = item.itemIcon;
-            }
-            TMP_Text itemName = slot.GetComponentInChildren<TMP_Text>();
-            if (itemIcon != null)
-            {
-                itemName.text = item.itemName.ToString();
-                itemIcon.sprite = item.itemIcon;
+                Debug.LogWarning("Không tìm thấy Player trong Scene.");
             }
         }
+
     }
 }

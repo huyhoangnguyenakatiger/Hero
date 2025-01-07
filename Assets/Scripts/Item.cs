@@ -1,10 +1,16 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Item", menuName = "Hero/Inventory/Item")]
-public class Item : ScriptableObject
+namespace Hero
 {
-    public string itemName;
-    public Sprite itemIcon;
-    public int maxStack = 1;
-    public bool isStackable;
+    public abstract class Item : ScriptableObject
+    {
+        public string itemName;
+        public Sprite itemIcon;
+        public bool isStackable;
+        public int quantity = 1;
+
+        public abstract void Use(Player player);
+    }
+
+
 }

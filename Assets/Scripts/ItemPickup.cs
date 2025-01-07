@@ -1,15 +1,18 @@
 using UnityEngine;
 
-public class PickupItem : MonoBehaviour
+namespace Hero
 {
-    public Item item;
-
-    private void OnTriggerEnter(Collider other)
+    public class PickupItem : MonoBehaviour
     {
-        if (other.CompareTag("Player"))
+        public Item item;
+
+        private void OnTriggerEnter(Collider other)
         {
-            InventoryManager.Instance.AddItem(item);
-            Destroy(gameObject);
+            if (other.CompareTag("Player"))
+            {
+                InventoryManager.Instance.AddItem(item);
+                Destroy(gameObject);
+            }
         }
     }
 }
