@@ -587,7 +587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 323bee5426dcf584abc2b27d03bc59d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyName: Slime
+  maxHealth: 50
   health: 50
   speed: 10
   damage: 10

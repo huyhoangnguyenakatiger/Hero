@@ -7,6 +7,6 @@ namespace Hero
         float damage;
         public void SetDamage(float damage) => this.damage = damage;
 
-        
+
     }
 }
