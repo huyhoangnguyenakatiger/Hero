@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b4c098916de5a4abd2d5e5ba6bb35a, type: 3}
   m_Name: EnemyBasicSpell
   m_EditorClassIdentifier: 
+  spellName: Enemy Basic Spell
+  spellIcon: {fileID: 21300000, guid: 8a5f9829a049c704fa992203bfc451f2, type: 3}
+  price: 0
   projectilePrefab: {fileID: 1068277802499879637, guid: a8034377c189f364385c89ea67a3a1e7, type: 3}
   projectileHit: {fileID: 3990887486990641432, guid: 5ce593df4507427499be8fe8e3aaa7e4, type: 3}
   projectileLifeTime: 3

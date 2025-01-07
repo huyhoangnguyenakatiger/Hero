@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e466c03d59258ee449337501e964acb3, type: 3}
   m_Name: RedEnergySpell
   m_EditorClassIdentifier: 
+  spellName: Explosion Spell
+  spellIcon: {fileID: 21300000, guid: 21df9195ed43b004394e6d7913b03149, type: 3}
+  price: 100
   explosionSpellPrefab: {fileID: 3112092983999392470, guid: 9b5cdbe528f45ab4aafd03d3eccdf2d9, type: 3}
   explosionDamage: 10
   explosionLifeTime: 2

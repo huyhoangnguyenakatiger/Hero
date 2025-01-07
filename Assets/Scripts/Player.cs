@@ -36,5 +36,7 @@ namespace Hero
         {
             mana = Mathf.Clamp(mana + amount, 0, maxMana);
         }
+
+        public float GetHealthNormalized() => health / maxHealth;
     }
 }

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c7f4339004196429c9617e6f9d577c, type: 3}
   m_Name: BasicSpell
   m_EditorClassIdentifier: 
+  spellName: Basic Spell
+  spellIcon: {fileID: 21300000, guid: 2bccd332882fcd14b9e4c377e432c587, type: 3}
   projectilePrefab: {fileID: 1068277802499879637, guid: 566b4bc3dd6f8534fa66458cc311e940, type: 3}
   projectileHit: {fileID: 1281672802115360736, guid: f274b4c949137534f9e483ad57766d37, type: 3}
   projectileLifeTime: 3
