@@ -1327,6 +1327,7 @@ GameObject:
   - component: {fileID: 1533880627415714687}
   - component: {fileID: 5697719712173639197}
   - component: {fileID: 3408111610178879894}
+  - component: {fileID: 3277909073881317845}
   m_Layer: 3
   m_Name: PlayerArmature
   m_TagString: Player
@@ -1643,6 +1644,22 @@ CapsuleCollider:
   m_Height: 1.85
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &3277909073881317845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5051195311625438744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89ef0efc63446da4bbac3f6231aefb91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 50
+  health: 0
+  mana: 50
+  maxMana: 0
 --- !u!1 &5099032883661863855
 GameObject:
   m_ObjectHideFlags: 0
