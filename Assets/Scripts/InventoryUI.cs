@@ -49,13 +49,18 @@ namespace Hero
             foreach (var item in InventoryManager.Instance.items)
             {
                 GameObject slot = Instantiate(itemSlotPrefab, content);
+
                 TMP_Text itemName = slot.GetComponentInChildren<TMP_Text>();
                 Image itemIcon = slot.transform.Find("ItemIcon").GetComponent<Image>();
                 Button itemUseButton = slot.GetComponent<Button>();
+
+                Button assignButton = slot.transform.Find("AssignButton").GetComponent<Button>();
+
                 if (itemName != null && itemIcon != null)
                 {
                     itemName.text = item.itemName.ToString();
                     itemIcon.sprite = item.itemIcon;
+
                     itemUseButton.onClick.AddListener(() => OnUseItemButton(item));
                 }
             }
@@ -71,9 +76,8 @@ namespace Hero
             }
             else
             {
-                Debug.LogWarning("Không tìm thấy Player trong Scene.");
+                Debug.Log("Không tìm thấy Player trong Scene.");
             }
         }
-
     }
 }

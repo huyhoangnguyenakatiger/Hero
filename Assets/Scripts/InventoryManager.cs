@@ -8,7 +8,6 @@ namespace Hero
     {
         public static InventoryManager Instance;
 
-        [Header("Inventory Data")]
         public List<Item> items = new List<Item>();
 
         private void Awake()
@@ -35,10 +34,11 @@ namespace Hero
                 }
             }
             items.Add(newItem);
+            newItem.quantity++;
             Debug.Log($"Đã thêm item mới: {newItem.itemName} (x{newItem.quantity})");
         }
 
-        public void UseItem(Item item, Hero.Player player)
+        public void UseItem(Item item, Player player)
         {
             if (item != null)
             {
@@ -59,5 +59,14 @@ namespace Hero
                 }
             }
         }
+
+        public int GetItemQuantity(Item item)
+        {
+            if (item == null) return 0;
+
+            Item existingItem = items.Find(i => i.itemName == item.itemName);
+            return existingItem != null ? existingItem.quantity : 0;
+        }
+
     }
 }
