@@ -6,9 +6,9 @@ namespace Hero
     public class SpellMerchant : MonoBehaviour
     {
 
-        public List<SpellStrategy> spellsForSale = new List<SpellStrategy>();
+        public List<SpecialSpellStrategy> spellsForSale = new List<SpecialSpellStrategy>();
 
-        public bool BuySpell(SpellStrategy spell, int price)
+        public bool BuySpell(SpecialSpellStrategy spell, int price)
         {
             if (GameManager.Instance.SpendMoney(price))
             {

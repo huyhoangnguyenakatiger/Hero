@@ -7,12 +7,17 @@ namespace Hero
     {
         public static GameManager Instance { get; private set; }
 
-        public List<SpellStrategy> LearnedSpells { get; private set; } = new List<SpellStrategy>();
+        public List<SpecialSpellStrategy> LearnedSpells { get; private set; } = new List<SpecialSpellStrategy>();
 
         [SerializeField] private SpellStrategy basicSpell;
         [SerializeField] private int startingMoney = 100;
 
         public int Money { get; private set; }
+
+        private SpecialSpellStrategy spellUsing;
+
+        public SpecialSpellStrategy GetSpellUsing => spellUsing;
+        public void SetSpellUsing(SpecialSpellStrategy spell) => spellUsing = spell;
 
         private void Awake()
         {
@@ -26,14 +31,9 @@ namespace Hero
             DontDestroyOnLoad(gameObject);
 
             Money = startingMoney;
-
-            if (basicSpell != null && !LearnedSpells.Contains(basicSpell))
-            {
-                LearnedSpells.Add(basicSpell);
-            }
         }
 
-        public void LearnSpell(SpellStrategy spell)
+        public void LearnSpell(SpecialSpellStrategy spell)
         {
             if (!LearnedSpells.Contains(spell))
             {
@@ -60,7 +60,7 @@ namespace Hero
             Debug.Log($"Gained {amount} money. Total: {Money}");
         }
 
-        public List<SpellStrategy> GetLearnedSpells()
+        public List<SpecialSpellStrategy> GetLearnedSpells()
         {
             return LearnedSpells;
         }

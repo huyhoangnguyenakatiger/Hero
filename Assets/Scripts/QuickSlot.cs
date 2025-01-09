@@ -44,5 +44,10 @@ namespace Hero
             }
         }
 
+        void AssignSpell(SpellStrategy spell)
+        {
+            
+        }
+
     }
 }

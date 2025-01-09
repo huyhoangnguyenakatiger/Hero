@@ -56,23 +56,23 @@ namespace Hero
                 {
                     spellName.text = spell.spellName.ToString();
                     spellIcon.sprite = spell.spellIcon;
-                    spellSelectButton.onClick.AddListener(() => OnUseItemButton(spell));
+                    spellSelectButton.onClick.AddListener(() => OnSetSpellUsing(spell));
                 }
             }
         }
 
-        public void OnUseItemButton(SpellStrategy spell)
+        public void OnSetSpellUsing(SpecialSpellStrategy spell)
         {
-            // Player player = FindFirstObjectByType<Player>();
-            // if (player != null)
-            // {
-            //     InventoryManager.Instance.UseItem(item, player);
-            //     UpdateSpellUI();
-            // }
-            // else
-            // {
-            //     Debug.LogWarning("Không tìm thấy Player trong Scene.");
-            // }
+            PlayerSpell playerSpell = FindFirstObjectByType<PlayerSpell>();
+            if (playerSpell != null)
+            {
+                GameManager.Instance.SetSpellUsing(spell);
+
+            }
+            else
+            {
+                Debug.LogWarning("Không tìm thấy Player trong Scene.");
+            }
         }
     }
 }
