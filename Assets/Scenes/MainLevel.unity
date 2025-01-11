@@ -570,7 +570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spellsForSale:
-  - {fileID: 11400000, guid: 936d116036c8ed540a332482eb43a912, type: 2}
+  - {fileID: 11400000, guid: c59ff374850c6b94e9c67b591d2d4135, type: 2}
 --- !u!114 &291447219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1351,11 +1351,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 533158182237784768, guid: 646485d807af4e444924215ca05ac40d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 533158182237784768, guid: 646485d807af4e444924215ca05ac40d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -80
       objectReference: {fileID: 0}
     - target: {fileID: 533158182237784768, guid: 646485d807af4e444924215ca05ac40d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2279,6 +2279,71 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1292209548}
   m_CullTransparentMesh: 1
+--- !u!1001 &1315923078
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1748126250511097421, guid: a708cd2443b56d542a7bdc5f3393148e, type: 3}
+      propertyPath: m_Name
+      value: NPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881988526058748699, guid: a708cd2443b56d542a7bdc5f3393148e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.199063
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881988526058748699, guid: a708cd2443b56d542a7bdc5f3393148e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881988526058748699, guid: a708cd2443b56d542a7bdc5f3393148e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.0709386
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881988526058748699, guid: a708cd2443b56d542a7bdc5f3393148e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881988526058748699, guid: a708cd2443b56d542a7bdc5f3393148e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881988526058748699, guid: a708cd2443b56d542a7bdc5f3393148e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881988526058748699, guid: a708cd2443b56d542a7bdc5f3393148e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881988526058748699, guid: a708cd2443b56d542a7bdc5f3393148e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881988526058748699, guid: a708cd2443b56d542a7bdc5f3393148e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881988526058748699, guid: a708cd2443b56d542a7bdc5f3393148e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8469550064470976420, guid: a708cd2443b56d542a7bdc5f3393148e, type: 3}
+      propertyPath: spellPanel
+      value: 
+      objectReference: {fileID: 1500003811}
+    - target: {fileID: 8469550064470976420, guid: a708cd2443b56d542a7bdc5f3393148e, type: 3}
+      propertyPath: spellMerchantUI
+      value: 
+      objectReference: {fileID: 291447219}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a708cd2443b56d542a7bdc5f3393148e, type: 3}
 --- !u!1 &1401947521
 GameObject:
   m_ObjectHideFlags: 0
@@ -3816,3 +3881,4 @@ SceneRoots:
   - {fileID: 172535239}
   - {fileID: 1019864799}
   - {fileID: 291447215}
+  - {fileID: 1315923078}
