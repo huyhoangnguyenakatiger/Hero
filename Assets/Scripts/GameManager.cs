@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Hero
 {
@@ -8,16 +10,27 @@ namespace Hero
         public static GameManager Instance { get; private set; }
 
         public List<SpecialSpellStrategy> LearnedSpells { get; private set; } = new List<SpecialSpellStrategy>();
-
-        [SerializeField] private SpellStrategy basicSpell;
         [SerializeField] private int startingMoney = 100;
 
         public int Money { get; private set; }
 
         private SpecialSpellStrategy spellUsing;
-
         public SpecialSpellStrategy GetSpellUsing => spellUsing;
         public void SetSpellUsing(SpecialSpellStrategy spell) => spellUsing = spell;
+
+        // New fields for scene management
+        public string CurrentScene { get; private set; } = "Base";
+        bool isCleared = false;
+        const string ENEMIES_LEFT_STRING = "Kẻ thù còn lại: ";
+        public int enemiesLeft = 0;
+        public void AdjustEnemiesLeft(int amount)
+        {
+            enemiesLeft += amount;
+            if (enemiesLeft <= 0)
+            {
+                isCleared = true;
+            }
+        }
 
         private void Awake()
         {
@@ -33,6 +46,7 @@ namespace Hero
             Money = startingMoney;
         }
 
+        // Spell management
         public void LearnSpell(SpecialSpellStrategy spell)
         {
             if (!LearnedSpells.Contains(spell))
@@ -63,6 +77,24 @@ namespace Hero
         public List<SpecialSpellStrategy> GetLearnedSpells()
         {
             return LearnedSpells;
+        }
+
+        // Scene management
+        public void LoadScene(string sceneName)
+        {
+            CurrentScene = sceneName;
+            SceneManager.LoadScene(sceneName);
+        }
+
+        public void MarkForest1Cleared()
+        {
+            isCleared = true;
+            Debug.Log("Forest 1 cleared!");
+        }
+
+        public bool isLevelCleared()
+        {
+            return isCleared;
         }
     }
 }

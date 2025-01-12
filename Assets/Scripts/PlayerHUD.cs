@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,7 @@ namespace Hero
     {
         Player player;
         [SerializeField] Image healthBar;
+        [SerializeField] TMP_Text moneyText;
 
         void Awake()
         {
@@ -16,6 +18,7 @@ namespace Hero
         void Update()
         {
             healthBar.fillAmount = player.GetHealthNormalized();
+            moneyText.text = GameManager.Instance.Money.ToString();
         }
     }
 }
