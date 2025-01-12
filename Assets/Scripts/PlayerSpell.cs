@@ -7,8 +7,6 @@ namespace Hero
     public class PlayerSpell : Spell
     {
         [SerializeField] Transform firePoint;
-        [SerializeField] float spellCooldownTime = 1.5f; // Cooldown for regular spell
-        [SerializeField] float specialSpellCooldownTime = 2.5f; // Cooldown for special spell
 
         StarterAssetsInputs starterAssetsInputs;
         Animator animator;
@@ -78,7 +76,7 @@ namespace Hero
         {
             isCasting = true;
             thirdPersonController.enabled = false;
-            spellCooldownTimer = spellCooldownTime; // Set cooldown
+            spellCooldownTimer = spellStrategy.cooldown;
 
             Vector3 target = InputHelper.GetMouseWorldPositionOnPlane();
             transform.LookAt(target);
@@ -90,7 +88,7 @@ namespace Hero
                 spellStrategy.Fire(firePoint, target);
             }
 
-            Invoke(nameof(EndCastingSpell), 1.5f);
+            Invoke(nameof(EndCastingSpell), spellStrategy.cooldown);
             starterAssetsInputs.fire = false;
         }
 
@@ -98,7 +96,7 @@ namespace Hero
         {
             isCasting = true;
             thirdPersonController.enabled = false;
-            specialSpellCooldownTimer = specialSpellCooldownTime; // Set cooldown
+            specialSpellCooldownTimer = specialSpellStrategy.cooldown; // Set cooldown
 
             Vector3 target = InputHelper.GetMouseWorldPositionOnPlane();
             transform.LookAt(target);
@@ -110,7 +108,7 @@ namespace Hero
                 specialSpellStrategy.SpecialFire(firePoint, target);
             }
 
-            Invoke(nameof(EndCastingSpell), 1.5f);
+            Invoke(nameof(EndCastingSpell), specialSpellStrategy.cooldown);
             starterAssetsInputs.specialFire = false;
         }
 
