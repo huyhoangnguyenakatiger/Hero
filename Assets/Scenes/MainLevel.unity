@@ -555,8 +555,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9a9094074387f345962b9d724cc803a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicSpell: {fileID: 11400000, guid: a0eda5ceb4a13c74c8116228d063d18b, type: 2}
   startingMoney: 100
+  enemiesLeft: 0
 --- !u!114 &291447218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2798,12 +2798,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795303671}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bdde70c65d1a819418a31b0523ee3ccc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1977782889}
+  moneyText: {fileID: 0}
 --- !u!1 &1863675087
 GameObject:
   m_ObjectHideFlags: 0

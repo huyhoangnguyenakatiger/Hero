@@ -4,6 +4,7 @@ namespace Hero
     public abstract class SpecialSpellStrategy : ScriptableObject
     {
         public string spellName;
+        public string spellDescription;
         public Sprite spellIcon;
         public float cooldown;
         public int price;

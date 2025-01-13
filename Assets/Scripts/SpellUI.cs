@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace Hero
 {
@@ -9,7 +10,7 @@ namespace Hero
         public GameObject spellPanel;
         public Transform content;
         public GameObject spellSlotPrefab;
-
+        public TooltipManager tooltipManager;
         private void Start()
         {
             spellPanel.SetActive(false);
@@ -52,11 +53,35 @@ namespace Hero
                 TMP_Text spellName = slot.GetComponentInChildren<TMP_Text>();
                 Image spellIcon = slot.transform.Find("SpellIcon").GetComponent<Image>();
                 Button spellSelectButton = slot.GetComponent<Button>();
+
                 if (spellName != null && spellIcon != null)
                 {
                     spellName.text = spell.spellName.ToString();
                     spellIcon.sprite = spell.spellIcon;
                     spellSelectButton.onClick.AddListener(() => OnSetSpellUsing(spell));
+
+                    EventTrigger trigger = slot.AddComponent<EventTrigger>();
+
+                    EventTrigger.Entry pointerEnter = new EventTrigger.Entry
+                    {
+                        eventID = EventTriggerType.PointerEnter
+                    };
+                    pointerEnter.callback.AddListener((eventData) =>
+                    {
+                        tooltipManager.ShowTooltip(spell.spellName, spell.spellDescription, Input.mousePosition);
+                    });
+                    trigger.triggers.Add(pointerEnter);
+
+                    // PointerExit
+                    EventTrigger.Entry pointerExit = new EventTrigger.Entry
+                    {
+                        eventID = EventTriggerType.PointerExit
+                    };
+                    pointerExit.callback.AddListener((eventData) =>
+                    {
+                        tooltipManager.HideTooltip();
+                    });
+                    trigger.triggers.Add(pointerExit);
                 }
             }
         }
@@ -67,7 +92,6 @@ namespace Hero
             if (playerSpell != null)
             {
                 GameManager.Instance.SetSpellUsing(spell);
-
             }
             else
             {
