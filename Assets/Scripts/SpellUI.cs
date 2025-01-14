@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using StarterAssets;
 
 namespace Hero
 {
@@ -11,6 +12,9 @@ namespace Hero
         public Transform content;
         public GameObject spellSlotPrefab;
         public TooltipManager tooltipManager;
+        StarterAssetsInputs starterAssetsInputs;
+
+        void Awake() => starterAssetsInputs = FindFirstObjectByType<StarterAssetsInputs>();
         private void Start()
         {
             spellPanel.SetActive(false);
@@ -21,7 +25,10 @@ namespace Hero
             if (Input.GetKeyDown(KeyCode.K))
             {
                 spellPanel.SetActive(!spellPanel.activeSelf);
-
+                if (starterAssetsInputs != null)
+                {
+                    starterAssetsInputs.IsUIActive = spellPanel.activeSelf;
+                }
                 TogglePlayerActions(spellPanel.activeSelf);
 
                 if (spellPanel.activeSelf)

@@ -1,19 +1,27 @@
+using StarterAssets;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Hero
 {
     public class SpellMerchantUI : MonoBehaviour
     {
-        public SpellMerchant merchant;
+        SpellMerchant merchant;
         public Transform content;
         public GameObject spellSlotPrefab;
         public GameObject spellPanel;
         public Text playerMoneyText;
-
+        public TooltipManager tooltipManager;
+        StarterAssetsInputs starterAssetsInputs;
         // private int playerMoney = 100;
-
+        void Awake()
+        {
+            merchant = GetComponent<SpellMerchant>();
+            // tooltipManager = FindFirstObjectByType<TooltipManager>();
+            starterAssetsInputs = FindAnyObjectByType<StarterAssetsInputs>();
+        }
 
         private void Start()
         {
@@ -22,8 +30,17 @@ namespace Hero
             // UpdatePlayerMoneyUI();
         }
 
+        void Update()
+        {
+            if (starterAssetsInputs != null)
+            {
+                starterAssetsInputs.IsUIActive = spellPanel.activeSelf;
+            }
+        }
+
         public void UpdateMerchantUI()
         {
+
             foreach (Transform child in content)
             {
                 Destroy(child.gameObject);
@@ -42,6 +59,30 @@ namespace Hero
                     spellIcon.sprite = spell.spellIcon;
                     spellPrice.text = spell.price.ToString();
                     spellBuyButton.onClick.AddListener(() => merchant.BuySpell(spell, spell.price));
+
+
+                    EventTrigger trigger = slot.AddComponent<EventTrigger>();
+
+                    EventTrigger.Entry pointerEnter = new EventTrigger.Entry
+                    {
+                        eventID = EventTriggerType.PointerEnter
+                    };
+                    pointerEnter.callback.AddListener((eventData) =>
+                    {
+                        tooltipManager.ShowTooltip(spell.spellName, spell.spellDescription, Input.mousePosition);
+                    });
+                    trigger.triggers.Add(pointerEnter);
+
+                    // PointerExit
+                    EventTrigger.Entry pointerExit = new EventTrigger.Entry
+                    {
+                        eventID = EventTriggerType.PointerExit
+                    };
+                    pointerExit.callback.AddListener((eventData) =>
+                    {
+                        tooltipManager.HideTooltip();
+                    });
+                    trigger.triggers.Add(pointerExit);
                 }
             }
         }

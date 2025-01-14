@@ -14,7 +14,7 @@ namespace StarterAssets
 		public bool sprint;
 		public bool fire;
 		public bool specialFire;
-
+		public bool IsUIActive { get; set; }
 		[Header("Movement Settings")]
 		public bool analogMovement;
 
@@ -48,11 +48,21 @@ namespace StarterAssets
 
 		public void OnFire(InputValue value)
 		{
+			if (IsUIActive)
+			{
+				fire = false;
+				return;
+			}
 			FireInput(value.isPressed);
 		}
 
 		public void OnSpecialFire(InputValue value)
 		{
+			if (IsUIActive)
+			{
+				specialFire = false;
+				return;
+			}
 			SpecialFireInput(value.isPressed);
 		}
 #endif

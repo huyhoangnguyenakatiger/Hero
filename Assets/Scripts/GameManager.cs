@@ -52,6 +52,7 @@ namespace Hero
             if (!LearnedSpells.Contains(spell))
             {
                 LearnedSpells.Add(spell);
+                SetSpellUsing(spell);
                 Debug.Log($"Spell {spell.name} learned!");
             }
         }

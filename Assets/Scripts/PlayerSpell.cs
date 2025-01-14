@@ -103,9 +103,9 @@ namespace Hero
 
             animator.Play("WideArmSpellCasting", 0, 0f);
 
-            if (specialSpellStrategy != null)
+            if (GameManager.Instance.GetSpellUsing != null)
             {
-                specialSpellStrategy.SpecialFire(firePoint, target);
+                GameManager.Instance.GetSpellUsing.SpecialFire(firePoint, target);
             }
 
             Invoke(nameof(EndCastingSpell), specialSpellStrategy.cooldown);

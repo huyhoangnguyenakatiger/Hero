@@ -1,3 +1,4 @@
+using StarterAssets;
 using UnityEngine;
 
 namespace Hero
@@ -6,13 +7,12 @@ namespace Hero
     {
         public GameObject spellPanel;
         public SpellMerchantUI spellMerchantUI;
-        public GameObject interactUI; // UI để hiện chữ F
+        public GameObject interactUI;
         private bool isPlayerNearby = false;
-
         private void Start()
         {
             if (interactUI != null)
-                interactUI.SetActive(false); // Ẩn UI lúc đầu
+                interactUI.SetActive(false);
         }
 
         private void Update()
@@ -52,6 +52,7 @@ namespace Hero
             if (spellPanel.activeSelf)
             {
                 spellMerchantUI.UpdateMerchantUI();
+
             }
         }
 
