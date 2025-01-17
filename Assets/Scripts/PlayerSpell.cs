@@ -11,8 +11,9 @@ namespace Hero
         StarterAssetsInputs starterAssetsInputs;
         Animator animator;
         ThirdPersonController thirdPersonController;
-
-        bool isCasting;
+        Player player;
+        bool isSpellCasting;
+        bool isSpecialSpellCasting;
         float spellCooldownTimer;
         float specialSpellCooldownTimer;
 
@@ -21,6 +22,7 @@ namespace Hero
             starterAssetsInputs = GetComponent<StarterAssetsInputs>();
             animator = GetComponent<Animator>();
             thirdPersonController = GetComponent<ThirdPersonController>();
+            player = FindFirstObjectByType<Player>();
         }
 
         void Update()
@@ -31,8 +33,9 @@ namespace Hero
 
             if (starterAssetsInputs.fire)
             {
-                if (!isCasting && spellCooldownTimer <= 0)
+                if (!isSpellCasting && spellCooldownTimer <= 0)
                 {
+
                     StartCastingSpell();
                 }
                 else
@@ -43,8 +46,9 @@ namespace Hero
 
             if (starterAssetsInputs.specialFire)
             {
-                if (!isCasting && specialSpellCooldownTimer <= 0 && specialSpellStrategy)
+                if (!isSpecialSpellCasting && specialSpellCooldownTimer <= 0 && specialSpellStrategy)
                 {
+                    player.UseMana(specialSpellStrategy.manaCost);
                     StartCastingSpecialSpell();
                 }
                 else
@@ -74,8 +78,8 @@ namespace Hero
 
         void StartCastingSpell()
         {
-            isCasting = true;
-            thirdPersonController.enabled = false;
+            isSpellCasting = true;
+            // thirdPersonController.enabled = false;
             spellCooldownTimer = spellStrategy.cooldown;
 
             Vector3 target = InputHelper.GetMouseWorldPositionOnPlane();
@@ -86,6 +90,7 @@ namespace Hero
             if (spellStrategy != null)
             {
                 spellStrategy.Fire(firePoint, target);
+                AudioManager.Instance.PlaySpellCast();
             }
 
             Invoke(nameof(EndCastingSpell), spellStrategy.cooldown);
@@ -94,8 +99,8 @@ namespace Hero
 
         void StartCastingSpecialSpell()
         {
-            isCasting = true;
-            thirdPersonController.enabled = false;
+            isSpecialSpellCasting = true;
+            // thirdPersonController.enabled = false;
             specialSpellCooldownTimer = specialSpellStrategy.cooldown; // Set cooldown
 
             Vector3 target = InputHelper.GetMouseWorldPositionOnPlane();
@@ -106,16 +111,23 @@ namespace Hero
             if (GameManager.Instance.GetSpellUsing != null)
             {
                 GameManager.Instance.GetSpellUsing.SpecialFire(firePoint, target);
+                AudioManager.Instance.PlaySpecialSpellCast();
             }
 
-            Invoke(nameof(EndCastingSpell), specialSpellStrategy.cooldown);
+            Invoke(nameof(EndCastingSpecialSpell), specialSpellStrategy.cooldown);
             starterAssetsInputs.specialFire = false;
         }
 
         void EndCastingSpell()
         {
-            isCasting = false;
-            thirdPersonController.enabled = true;
+            isSpellCasting = false;
+            // thirdPersonController.enabled = true;
+        }
+
+        void EndCastingSpecialSpell()
+        {
+            isSpecialSpellCasting = false;
+            // thirdPersonController.enabled = true;
         }
     }
 }

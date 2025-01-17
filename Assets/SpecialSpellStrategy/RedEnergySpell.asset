@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e466c03d59258ee449337501e964acb3, type: 3}
   m_Name: RedEnergySpell
   m_EditorClassIdentifier: 
-  spellName: Red Energy Spell
-  spellDescription: Red Energy Spell
+  spellName: "Thi\xEAn Ngo\u1EA1i L\u01B0u Tinh"
+  spellDescription: "G\u1ECDi xu\u1ED1ng m\u1ED9t thi\xEAn th\u1EA1ch t\u1EEB tr\u1EDDi
+    cao, g\xE2y s\xE1t th\u01B0\u01A1ng di\u1EC7n r\u1ED9ng l\xEAn k\u1EBB \u0111\u1ECBch
+    trong ph\u1EA1m vi"
   spellIcon: {fileID: 21300000, guid: 8ec5b52b09d90074a83d61c1334190f9, type: 3}
-  cooldown: 0
+  cooldown: 5
+  manaCost: 10
   price: 100
   explosionSpellPrefab: {fileID: 3112092983999392470, guid: 9b5cdbe528f45ab4aafd03d3eccdf2d9, type: 3}
   explosionDamage: 50

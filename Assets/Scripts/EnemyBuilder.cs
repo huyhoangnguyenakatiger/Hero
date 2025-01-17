@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Hero
 {
-    public class EnemyBuilder : MonoBehaviour
+    public class EnemyBuilder
     {
         public GameObject enemyPrefab;
         public string enemyName;
@@ -46,13 +46,15 @@ namespace Hero
             return this;
         }
 
-        public Enemy Build()
+        public GameObject Build()
         {
-            Enemy enemyComponent = Instantiate(enemyPrefab, spawnPosition.position, spawnPosition.rotation).AddComponent<Enemy>();
+            GameObject enemyObject = GameObject.Instantiate(enemyPrefab, spawnPosition.position, spawnPosition.rotation);
+
+            Enemy enemyComponent = enemyObject.GetComponent<Enemy>();
             enemyComponent.health = health;
             enemyComponent.speed = speed;
             enemyComponent.damage = damage;
-            return enemyComponent;
+            return enemyObject;
         }
     }
 }

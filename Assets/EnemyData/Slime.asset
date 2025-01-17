@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Slime
   m_EditorClassIdentifier: 
   enemyName: Slime
-  health: 100
+  health: 50
   speed: 2
   damage: 10
   enemyPrefab: {fileID: 8244650653972170444, guid: 83dd116433ac10244ad664a0ac3fd763, type: 3}

@@ -22,6 +22,7 @@ namespace Hero
         public override void Die()
         {
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            GameManager.Instance.AdjustEnemiesLeft(-1);
             Destroy(gameObject);
         }
 

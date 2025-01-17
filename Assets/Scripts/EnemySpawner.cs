@@ -10,19 +10,22 @@ namespace Hero
         EnemyFactory enemyFactory;
         float spawnTimer = 0f;
         int enemiesSpawned = 0;
+
         void Start()
         {
             enemyFactory = new EnemyFactory();
+            GameManager.Instance.AdjustEnemiesLeft(maxEnemies);
         }
 
         void Update()
         {
             spawnTimer += Time.deltaTime;
-            if (spawnTimer > spawnInterval && enemiesSpawned <= maxEnemies)
+            if (spawnTimer > spawnInterval && enemiesSpawned < maxEnemies)
             {
                 SpawnEnemy();
                 spawnTimer = 0f;
             }
+
             if (enemiesSpawned == maxEnemies)
             {
                 Destroy(gameObject);
@@ -33,7 +36,6 @@ namespace Hero
         {
             enemyFactory.CreateEnemy(enemyData, transform);
             enemiesSpawned++;
-            GameManager.Instance.AdjustEnemiesLeft(1);
         }
     }
 }

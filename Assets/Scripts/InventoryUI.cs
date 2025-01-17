@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Hero
@@ -9,6 +10,8 @@ namespace Hero
         public GameObject inventoryPanel;
         public Transform content;
         public GameObject itemSlotPrefab;
+        public TooltipManager tooltipManager;
+
 
         private void Start()
         {
@@ -50,8 +53,9 @@ namespace Hero
             {
                 GameObject slot = Instantiate(itemSlotPrefab, content);
 
-                TMP_Text itemName = slot.GetComponentInChildren<TMP_Text>();
+                TMP_Text itemName = slot.transform.Find("ItemName").GetComponent<TMP_Text>();
                 Image itemIcon = slot.transform.Find("ItemIcon").GetComponent<Image>();
+                TMP_Text itemQuantity = slot.transform.Find("ItemQuantity").GetComponent<TMP_Text>();
                 Button itemUseButton = slot.GetComponent<Button>();
 
                 Button assignButton = slot.transform.Find("AssignButton").GetComponent<Button>();
@@ -60,8 +64,31 @@ namespace Hero
                 {
                     itemName.text = item.itemName.ToString();
                     itemIcon.sprite = item.itemIcon;
-
+                    itemQuantity.text = item.quantity.ToString();
                     itemUseButton.onClick.AddListener(() => OnUseItemButton(item));
+
+                    EventTrigger trigger = slot.AddComponent<EventTrigger>();
+
+                    EventTrigger.Entry pointerEnter = new EventTrigger.Entry
+                    {
+                        eventID = EventTriggerType.PointerEnter
+                    };
+                    pointerEnter.callback.AddListener((eventData) =>
+                    {
+                        tooltipManager.ShowItemTooltip(item.itemName, item.itemDescription, Input.mousePosition);
+                    });
+                    trigger.triggers.Add(pointerEnter);
+
+                    // PointerExit
+                    EventTrigger.Entry pointerExit = new EventTrigger.Entry
+                    {
+                        eventID = EventTriggerType.PointerExit
+                    };
+                    pointerExit.callback.AddListener((eventData) =>
+                    {
+                        tooltipManager.HideTooltip();
+                    });
+                    trigger.triggers.Add(pointerExit);
                 }
             }
         }

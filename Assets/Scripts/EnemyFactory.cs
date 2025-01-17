@@ -4,24 +4,23 @@ namespace Hero
 {
     public class EnemyFactory
     {
-        public Enemy CreateEnemy(EnemyData enemyData, Transform spawnPosition)
+        public GameObject CreateEnemy(EnemyData enemyData, Transform spawnPosition)
         {
             if (enemyData.enemyPrefab == null)
             {
                 return null;
             }
 
-            Enemy enemyComponent = new EnemyBuilder()
+            EnemyBuilder builder = new EnemyBuilder()
             .WithPrefab(enemyData.enemyPrefab)
             .WithName(enemyData.enemyName)
             .WithHealth(enemyData.health)
             .WithSpeed(enemyData.speed)
             .WithDamage(enemyData.damage)
-            .WithSpawnPosition(spawnPosition)
-            .Build();
+            .WithSpawnPosition(spawnPosition);
 
 
-            return enemyComponent;
+            return builder.Build();
         }
     }
 }

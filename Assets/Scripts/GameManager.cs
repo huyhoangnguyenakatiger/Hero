@@ -45,8 +45,6 @@ namespace Hero
 
             Money = startingMoney;
         }
-
-        // Spell management
         public void LearnSpell(SpecialSpellStrategy spell)
         {
             if (!LearnedSpells.Contains(spell))
@@ -87,15 +85,5 @@ namespace Hero
             SceneManager.LoadScene(sceneName);
         }
 
-        public void MarkForest1Cleared()
-        {
-            isCleared = true;
-            Debug.Log("Forest 1 cleared!");
-        }
-
-        public bool isLevelCleared()
-        {
-            return isCleared;
-        }
     }
 }

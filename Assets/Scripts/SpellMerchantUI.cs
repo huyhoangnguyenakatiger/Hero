@@ -69,7 +69,7 @@ namespace Hero
                     };
                     pointerEnter.callback.AddListener((eventData) =>
                     {
-                        tooltipManager.ShowTooltip(spell.spellName, spell.spellDescription, Input.mousePosition);
+                        tooltipManager.ShowSpellTooltip(spell.spellName, spell.spellDescription, spell.price, spell.manaCost, spell.cooldown, Input.mousePosition);
                     });
                     trigger.triggers.Add(pointerEnter);
 
@@ -89,7 +89,7 @@ namespace Hero
 
         // public void UpdatePlayerMoneyUI()
         // {
-        //     playerMoneyText.text = $"Money: {playerMoney}";
+        //     playerMoneyText.text = $"Money: {    }";
         // }
     }
 }

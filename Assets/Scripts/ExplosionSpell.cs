@@ -13,7 +13,7 @@ namespace Hero
             GameObject explosionSpell = Instantiate(explosionSpellPrefab, target, Quaternion.identity);
             Explosion explosionComponent = explosionSpell.GetComponent<Explosion>();
             explosionComponent.SetDamage(explosionDamage);
-
+            
             Destroy(explosionSpell, explosionLifeTime);
 
         }

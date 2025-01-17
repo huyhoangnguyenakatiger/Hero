@@ -9,6 +9,8 @@ namespace Hero
         Player player;
         [SerializeField] Image healthBar;
         [SerializeField] TMP_Text moneyText;
+        [SerializeField] Image manaBar;
+
 
         void Awake()
         {
@@ -18,6 +20,7 @@ namespace Hero
         void Update()
         {
             healthBar.fillAmount = player.GetHealthNormalized();
+            manaBar.fillAmount = player.GetManaNormalized();
             moneyText.text = GameManager.Instance.Money.ToString();
         }
     }
