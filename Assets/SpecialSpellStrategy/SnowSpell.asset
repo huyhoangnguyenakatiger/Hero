@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e466c03d59258ee449337501e964acb3, type: 3}
+  m_Name: SnowSpell
+  m_EditorClassIdentifier: 
+  spellName: "B\u0103ng T\xE2m Ti\xEAn T\u1EED"
+  spellDescription: "G\xE2y s\xE1t th\u01B0\u01A1ng ph\xE9p thu\u1EADt h\u1EC7 Th\u1EE7y,
+    \u1EA3nh h\u01B0\u1EDFng tr\xEAn di\u1EC7n r\u1ED9ng"
+  spellIcon: {fileID: 21300000, guid: f5ab3f534c1138f4786f23cd74103223, type: 3}
+  cooldown: 10
+  manaCost: 20
+  damage: 100
+  price: 200
+  explosionSpellPrefab: {fileID: 6869833758243737138, guid: b14a3047f08a7c34784702d7156c064b, type: 3}
+  explosionLifeTime: 1.5

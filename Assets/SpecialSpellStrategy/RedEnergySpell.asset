@@ -19,7 +19,7 @@ MonoBehaviour:
   spellIcon: {fileID: 21300000, guid: 8ec5b52b09d90074a83d61c1334190f9, type: 3}
   cooldown: 5
   manaCost: 10
+  damage: 50
   price: 100
   explosionSpellPrefab: {fileID: 3112092983999392470, guid: 9b5cdbe528f45ab4aafd03d3eccdf2d9, type: 3}
-  explosionDamage: 50
   explosionLifeTime: 1.5

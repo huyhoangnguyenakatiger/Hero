@@ -19483,4 +19483,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 1e10089c41225cf4d84d6a3b1d7ce40f, type: 2}
+  maxEnemies: 5
   spawnInterval: 3

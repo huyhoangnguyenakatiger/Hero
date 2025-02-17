@@ -592,6 +592,11 @@ MonoBehaviour:
   speed: 10
   damage: 10
   explosionPrefab: {fileID: 1745062446156960778, guid: e566fbfafc6c25d41971530a672a8142, type: 3}
+  dropItems:
+  - {fileID: 4410107690636542127, guid: 1966a3441d12a1846bb0b04c5e7b8d53, type: 3}
+  - {fileID: 4702872042503885992, guid: 92e14c0a5b78e9e45a07ce0a8c2154b2, type: 3}
+  money: 20
+  dropChance: 0.5
 --- !u!114 &412973796375829603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -605,6 +610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spellStrategy: {fileID: 11400000, guid: f61cc677aa501ab45911e187e9166e0b, type: 2}
+  specialSpellStrategy: {fileID: 0}
   fireInput: {fileID: 5889493441225180356}
 --- !u!1 &8998799528737389898
 GameObject:
